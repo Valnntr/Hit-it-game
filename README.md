@@ -1,2 +1,2 @@
-#Hit it game
-#A game I created for my coding class
+
+A game I created for my coding class
