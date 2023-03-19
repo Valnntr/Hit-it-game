@@ -1,0 +1,107 @@
+#module(s)
+
+from turtle import *
+
+#classes
+
+class Sprite(Turtle):
+    def __init__(self, x, y, step=10, shape='circle', col='black'):
+        super().__init__()
+        self.penup()
+        self.speed(0)
+        self.goto(x, y)
+        self.color(col)
+        self.shape(shape)
+        self.step = step
+        self.points = 0
+        self.x_start = None
+        self.y_start = None
+        self.y_end = None
+        self.x_end = None
+
+# Movemnt methods
+    def move_up(self):
+        self.goto(self.xcor(), self.ycor() + self.step)
+    def move_down(self):
+        self.goto(self.xcor(), self.ycor() - self.step)
+    def move_left(self):
+        self.goto(self.xcor() - self.step, self.ycor())
+    def move_right(self):
+        self.goto(self.xcor() + self.step, self.ycor())
+
+
+#idk
+player = Sprite(0, -100, 10, "circle", "orange")
+
+#eent handler 
+scr = player.getscreen()
+scr.listen()
+scr.onkey(player.move_up, 'w')
+scr.onkey(player.move_down, 'd')
+scr.onkey(player.move_left, 'l')
+scr.onkey(player.move_right, 'r')
+
+
+#* Collision Detection Method
+def check_collision ( self, sprite):
+    dist self.distance(sprite. xcor(), sprite. ycor())
+    if dist <30:
+        return True
+    else:
+        return False
+
+    #* Set Move Range Method
+    def set_move_range(self, x_start , y_start, x_end, y_end):
+        self.x_start = x_start
+        self.y_start = y_start
+        self.x_end = X_end
+        self.y_end = y_end
+        self.setheading (self.towards (self.x_end, self.y_end))
+
+    #* AI Move Method
+    def ai_move (self):
+        self.forward (self.step)
+
+        if self.xcor() >= self.x_end:
+            self.setheading(self. towards (self.x_start, self.y_start))
+        if self.xcor() <= self.x_start:
+            self.setheading (self.towards (self.x_end, self.y_end))
+
+##H Object Creation##
+player = Sprite(0, -100, 10, 'circle', 'orange ')
+obstacle_1 = Sprite( -200, 0, 15, 'square', 'red')
+obstacle_2 Sprite(20, 70, 10, 'square', 'red')
+obstacle_3 Sprite(200, 110, 6, 'square', 'red')
+target Sprite(0, 120, 20, 'triangle','green')
+scr = player.getscreen()
+
+### Game Loop ##
+obstacle_1.set_move_range(-200, 0, 200, 0)
+obstacle_2.set_move_range(-200, 70, 200, 70)
+obstacle_3.set_move_range( -200, 110, 200, 110)
+
+while player.points < 3:
+    obstacle_1.ai_move()
+    obstacle_2.ai_move()
+    obstacle3.ai move()
+
+    if player.check_collision(target):
+        player.points += 1
+        player.goto(0, -100)
+    if (player.check_collision(obstacle_1) or
+        player.check_collision (obstacle_2) or
+        player.check_collision( obstacle_3)):
+            target.hideturtle()
+            break
+
+if player.points >= 3:
+    obstacle_1.hideturtle()
+    obstacle_2.hideturtle()
+    obstacle_3.hideturtle()
+
+
+turtle.exitonclick()
+
+
+
+
